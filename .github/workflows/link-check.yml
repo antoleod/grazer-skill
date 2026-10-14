@@ -1,28 +1,11 @@
-name: Link Check
-
+name: link-check.yml (DISABLED - billing protection)
 on:
-  pull_request:
-    paths:
-      - '**.md'
-      - 'docs/**'
-  schedule:
-    - cron: '0 4 * * 1'
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
-  linkcheck:
+  disabled:
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Check relative and local links
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: >
-            --verbose
-            --no-progress
-            --include-fragments
-            --exclude-all-private
-            --exclude "https?://.*"
-            -- './**/*.md'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo 'Disabled by repository owner to prevent GitHub Actions charges'
